@@ -2,7 +2,7 @@
 
 # PTPal: Gamified Physical Therapy Tracker
 
-**PhysioQuest** is a Duolingo-style mobile app that helps users stay consistent with their physical therapy routines. Through gamification, habit tracking, and progress visualization, users are encouraged to complete daily exercises, earn streaks, and take charge of their recovery journey.
+**PTPal** is a Duolingo-style mobile app that helps users stay consistent with their physical therapy routines. Through gamification, habit tracking, and progress visualization, users are encouraged to complete daily exercises, earn streaks, and take charge of their recovery journey.
 
 
 ## Features
