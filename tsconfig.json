@@ -1,0 +1,28 @@
+{
+  "files": [],
+  "references": [
+    { "path": "packages/models" },
+    { "path": "packages/config" },
+    { "path": "packages/ui" },
+    { "path": "apps/api" },
+    { "path": "apps/web" },
+    { "path": "apps/mobile" }
+  ],
+  "compilerOptions": {
+    "composite": true,
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "jsx": "react-jsx",
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@vitalize/models": ["packages/models/src/index.ts"],
+      "@vitalize/config": ["packages/config/src/index.ts"],
+      "@vitalize/ui": ["packages/ui/src/index.ts"]
+    }
+  }
+}

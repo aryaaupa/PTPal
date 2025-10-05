@@ -1,0 +1,23 @@
+{
+  "name": "vitalize-pt",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": ["apps/*", "packages/*"],
+  "packageManager": "pnpm@9.11.0",
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev --parallel",
+    "lint": "turbo run lint",
+    "typecheck": "turbo run typecheck",
+    "test": "turbo run test",
+    "db:up": "docker compose up -d db redis",
+    "db:reset": "pnpm --filter @vitalize/api prisma migrate reset --force",
+    "seed": "pnpm --filter @vitalize/api run seed"
+  },
+  "devDependencies": {
+    "turbo": "^2.0.6",
+    "typescript": "^5.4.5",
+    "eslint": "^8.57.0",
+    "prettier": "^3.3.3"
+  }
+}

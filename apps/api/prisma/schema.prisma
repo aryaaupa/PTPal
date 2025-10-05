@@ -1,0 +1,122 @@
+// Prisma schema for Vitalize PT
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String
+  role      Role
+  locale    String   @default("en")
+  provider  AuthProvider
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  patient   Patient?
+}
+
+model Patient {
+  id              String   @id @default(cuid())
+  userId          String   @unique
+  user            User     @relation(fields: [userId], references: [id])
+  injury          String
+  side            Side
+  baselinePain    Int
+  baselineMobility Mobility
+  goals           Json
+  plans           Plan[]
+  sessions        Session[]
+}
+
+model Exercise {
+  id               String   @id @default(cuid())
+  title            String
+  mediaUrl         String
+  cues             Json
+  contraindications Json
+  tags             Json
+  formRules        Json
+}
+
+model Plan {
+  id         String  @id @default(cuid())
+  patientId  String
+  patient    Patient @relation(fields: [patientId], references: [id])
+  startDate  DateTime
+  templateName String?
+  days       Json
+  sessions   Session[]
+}
+
+model Session {
+  id            String   @id @default(cuid())
+  planId        String
+  plan          Plan     @relation(fields: [planId], references: [id])
+  date          DateTime
+  repsCompleted Int
+  setsCompleted Int
+  pain          Int
+  notes         String?
+  cvMetrics     Json
+}
+
+model Message {
+  id        String   @id @default(cuid())
+  threadId  String
+  senderId  String
+  text      String
+  createdAt DateTime @default(now())
+}
+
+model Badge {
+  id          String @id @default(cuid())
+  code        String @unique
+  name        String
+  description String
+}
+
+model AuditLog {
+  id        String   @id @default(cuid())
+  actorId   String
+  action    String
+  subject   String
+  createdAt DateTime @default(now())
+}
+
+model Protocol {
+  id          String   @id @default(cuid())
+  code        String   @unique
+  name        String
+  description String
+  days        Json
+  createdAt   DateTime @default(now())
+}
+
+enum Role {
+  patient
+  clinician
+  admin
+}
+
+enum Side {
+  left
+  right
+  bilateral
+}
+
+enum Mobility {
+  low
+  moderate
+  high
+}
+
+enum AuthProvider {
+  password
+  oauth
+}
