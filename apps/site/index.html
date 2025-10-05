@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vitalize PT — Make rehab feel like progress</title>
+    <style>
+      :root{--bg0:hsl(210 40% 98%);--bg1:hsl(0 0% 100%);--text1:hsl(222 47% 11%);--text2:hsl(215 16% 47%);--brand:hsl(192 95% 40%);--brand2:hsl(192 90% 32%);--accent:hsl(158 62% 45%);--ok:hsl(142 72% 29%);--warn:hsl(38 92% 50%);--danger:hsl(0 84% 60%);--border:hsl(214 32% 91%)}
+      body{font-family:Inter,system-ui;background:var(--bg0);color:var(--text1);margin:0}
+      header{display:flex;justify-content:space-between;align-items:center;padding:20px;border-bottom:1px solid var(--border);background:var(--bg1)}
+      .cta{background:var(--brand);color:white;border:none;padding:12px 16px;border-radius:12px;cursor:pointer}
+      .hero{display:grid;place-items:center;padding:60px 20px}
+      .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;padding:20px}
+      .card{background:var(--bg1);border:1px solid var(--border);border-radius:16px;padding:16px;box-shadow:0 4px 16px rgba(0,0,0,0.06)}
+      footer{padding:20px;border-top:1px solid var(--border);}
+    </style>
+  </head>
+  <body>
+    <header>
+      <strong>Vitalize PT</strong>
+      <nav>
+        <a href="#features">Features</a>
+        <a href="#pricing" style="margin-left:12px">Pricing</a>
+        <a href="#privacy" style="margin-left:12px">Privacy</a>
+      </nav>
+    </header>
+    <section class="hero">
+      <h1>Make rehab feel like progress</h1>
+      <p>Adaptive plans, on-device posture guidance, and motivating streaks.</p>
+      <div>
+        <a class="cta" href="#pricing">Get Started</a>
+      </div>
+    </section>
+
+    <section id="features" class="grid">
+      <div class="card"><h3>Adaptive Plans</h3><p>Adjust reps and rest based on pain and form.</p></div>
+      <div class="card"><h3>Pose Guidance</h3><p>On-device only. No camera frames uploaded.</p></div>
+      <div class="card"><h3>Clinician Portal</h3><p>Actionable dashboards and plan builder.</p></div>
+      <div class="card"><h3>Accessibility</h3><p>WCAG AA, large tap targets, captions.</p></div>
+    </section>
+
+    <section id="pricing" class="grid">
+      <div class="card">
+        <h3>Free</h3>
+        <p>Basic tracking and limited library.</p>
+        <div>$0</div>
+      </div>
+      <div class="card">
+        <h3>Plus</h3>
+        <p>Adaptive plans and CV guidance.</p>
+        <div id="plus-price">$9/mo</div>
+      </div>
+      <div class="card">
+        <h3>Clinic</h3>
+        <p>Multi-patient portal and exports.</p>
+        <div id="clinic-price">$49/mo</div>
+      </div>
+      <div class="card" style="grid-column:1/-1">
+        <label><input type="checkbox" id="yearly"/> Yearly billing (save 20%)</label>
+        <p id="terms">Monthly billing. Cancel anytime.</p>
+      </div>
+    </section>
+
+    <section id="privacy" class="grid">
+      <div class="card">
+        <h3>Privacy</h3>
+        <p>No camera frames leave your device. Data encrypted in transit and at rest. Role-based access. Audit logs.</p>
+      </div>
+    </section>
+
+    <footer>
+      <a href="#">Clinician Portal</a>
+      <span style="margin-left:12px">App Store links coming soon</span>
+    </footer>
+
+    <script>
+      const yearly = document.getElementById('yearly');
+      const plus = document.getElementById('plus-price');
+      const clinic = document.getElementById('clinic-price');
+      const terms = document.getElementById('terms');
+      function update(){
+        const yr = yearly.checked;
+        plus.textContent = yr ? '$86/yr' : '$9/mo';
+        clinic.textContent = yr ? '$470/yr' : '$49/mo';
+        terms.textContent = yr ? 'Yearly billing. Renews annually. Cancel anytime.' : 'Monthly billing. Cancel anytime.';
+      }
+      yearly.addEventListener('change', update);
+      update();
+    </script>
+  </body>
+</html>
