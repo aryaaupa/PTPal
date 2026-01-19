@@ -1,0 +1,12 @@
+{
+  "name": "ptpal",
+  "private": true,
+  "workspaces": ["apps/*", "packages/*"],
+  "scripts": {
+    "dev": "concurrently \"cd apps/web && pnpm dev\" \"cd apps/backend-pt && pnpm dev\" \"cd apps/backend-patient && pnpm dev\"",
+    "seed": "supabase db reset && supabase db push"
+  },
+  "devDependencies": {
+    "concurrently": "^7.6.0"
+  }
+}
